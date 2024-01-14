@@ -2,7 +2,7 @@ import 'package:aiproject/commonWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:window_manager/window_manager.dart';
 
-import 'DFS.dart';
+import 'Algorithm.dart';
 
 class mainPage extends StatefulWidget {
   const mainPage({super.key,});
@@ -88,7 +88,7 @@ class _mainPageState extends State<mainPage>
                                       Container(
                                         child: Row(
                                           children: [
-                                            Image(image: AssetImage('lib/boat.png'),width: sizes["boatWidth"],height: sizes["width"]!/6,fit: BoxFit.fitWidth,),
+                                            Image(image: AssetImage('lib/images/boat.png'),width: sizes["boatWidth"],height: sizes["width"]!/6,fit: BoxFit.fitWidth,),
                                           ],
                                           mainAxisAlignment: MainAxisAlignment.center,
                                         ),
@@ -129,9 +129,11 @@ class _mainPageState extends State<mainPage>
                 ),
               ],
             ),
-            IconButton(onPressed: (){
-              boatController.isAnimating?boatController.stop():boatController.status==AnimationStatus.forward?boatController.forward():boatController.reverse();
-            }, icon: Icon(Icons.pause)),
+            Positioned(top: MediaQuery.sizeOf(context).height*0.1, left: MediaQuery.sizeOf(context).width*0.1,
+              child: IconButton(onPressed: (){
+                boatController.isAnimating?boatController.stop():boatController.status==AnimationStatus.forward?boatController.forward():boatController.reverse();
+              }, icon: Icon(Icons.pause)),
+            ),
             Positioned(child:  Text(description,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color:Colors.white),),left: 100,top: 100,),
             Positioned(top: sizes["height"]!*0.3,
               right: sizes["width"]!*0.45,child: Row(
@@ -164,6 +166,10 @@ class _mainPageState extends State<mainPage>
             Positioned(child: TextButton(onPressed: (){
               success(context);
             },child: Text("Execution Time"),),right: 20,top: 100,),
+            Positioned(child: IconButton(onPressed: (){
+              waterFlowController.dispose();
+              boatController.dispose();
+              Navigator.pop(context);},icon: Icon(Icons.arrow_back_ios,color: Colors.white,),))
           ],
         ),
       ),
@@ -220,18 +226,18 @@ class _mainPageState extends State<mainPage>
         Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            Positioned(child: Image.asset('lib/tree.png',width: 110,),),
+            Positioned(child: Image.asset('lib/images/tree.png',width: 110,),),
             elements(human,monster,MediaQuery.sizeOf(context)),
           ],
         ),
         Container(
-          decoration: BoxDecoration(image: DecorationImage(image: AssetImage("lib/ground.jpg"),fit: BoxFit.fill),
+          decoration: BoxDecoration(image: DecorationImage(image: AssetImage("lib/images/ground.jpg"),fit: BoxFit.fill),
             color: Colors.grey,),
           height: MediaQuery.of(context).size.height * 0.45,
           width: sizes["landSize"],
           alignment: Alignment.topRight,
           child: Container(
-            decoration: BoxDecoration(image: DecorationImage(image: AssetImage('lib/grass.jpeg'),fit: BoxFit.fill)),
+            decoration: BoxDecoration(image: DecorationImage(image: AssetImage('lib/images/grass.jpeg'),fit: BoxFit.fill)),
             height: 20,
             width: sizes["landSize"],
           ),

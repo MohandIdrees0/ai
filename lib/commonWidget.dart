@@ -1,7 +1,5 @@
+import 'package:aiproject/project1/Algorithm.dart';
 import 'package:flutter/material.dart';
-
-import 'DFS.dart';
-
 var buttonStyle=TextButton.styleFrom(
   primary: Colors.white, // Text color
   backgroundColor: Colors.black, // Button background color
@@ -68,7 +66,7 @@ Stack returnStack(int number,bool ishuman,Size size){
 }
 
 Image humanMonsterImage(bool ishuman,Size size){
-  return Image(image: AssetImage(ishuman?"lib/man.png":"lib/ogre.png"),width: size.width*0.05,fit: BoxFit.fill,);
+  return Image(image: AssetImage(ishuman?"lib/images/man.png":"lib/images/ogre.png"),width: size.width*0.05,fit: BoxFit.fill,);
 }
 
 
